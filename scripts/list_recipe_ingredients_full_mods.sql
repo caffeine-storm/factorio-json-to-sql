@@ -1,0 +1,1 @@
+select recipe.name, (select item.name from item where item.rowid=recipe_ingredient.ingredient) as i_name, recipe_ingredient.count from recipe join recipe_ingredient on recipe.id=recipe_ingredient.recipe where recipe.mod_pack='full-mods' order by recipe.name asc;
