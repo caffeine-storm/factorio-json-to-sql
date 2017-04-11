@@ -18,6 +18,7 @@ create table item(
 create table recipe(
     id int PRIMARY KEY,
     name varchar(32),
+    energy numeric,
     mod_pack varchar(32)
 );
 
@@ -94,7 +95,7 @@ def process_mod_pack(mod_pack, recipes, techs, accumulators):
     # For each item, 'add' it to the item_accumulator
     for name, recipe in recipes.iteritems():
         rec_count += 1
-        recs.append((rec_count, name, mod_pack))
+        recs.append((rec_count, name, recipe['energy'], mod_pack))
 
         for ing in recipe['ingredients']:
             items.add((ing['name'],))

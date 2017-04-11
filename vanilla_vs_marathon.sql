@@ -2,12 +2,14 @@ drop table if exists vanilla_to_marathon_recipe;
 
 create table vanilla_to_marathon_recipe(
     vanilla_recipe int,
+    vanilla_energy numeric,
     marathon_recipe int,
+    marathon_energy numeric,
     FOREIGN KEY(vanilla_recipe) references recipe,
     FOREIGN KEY(marathon_recipe) references recipe
 );
 
-insert into vanilla_to_marathon_recipe select v.id, m.id from recipe as v join recipe as m where v.mod_pack = 'vanilla' and m.mod_pack = 'marathon' and v.name = m.name;
+insert into vanilla_to_marathon_recipe select v.id, v.energy, m.id, m.energy from recipe as v join recipe as m where v.mod_pack = 'vanilla' and m.mod_pack = 'marathon' and v.name = m.name;
 
 drop table if exists vanilla_to_marathon_counts;
 
